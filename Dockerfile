@@ -30,7 +30,7 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
 #Config railo
-COPY /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
+RUN mv /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
 ADD server.xml /opt/railo/tomcat/conf/server.xml
 
 # Config babbles
