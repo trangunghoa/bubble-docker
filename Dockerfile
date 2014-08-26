@@ -38,7 +38,7 @@ ADD babbles.com.conf /etc/apache2/sites-available/
 RUN a2ensite babbles.com.conf
 
 #Config apache
-  COPY /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
+  RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
   ADD apache2.conf /etc/apache2/apache2.conf
 
 
