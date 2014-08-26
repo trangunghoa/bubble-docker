@@ -4,11 +4,12 @@ MAINTAINER Trang Lee <trangunghoa@gmail.com>
 #Install base packages
 RUN apt-get -y update
 RUN apt-get install -y openjdk-7-jre-headless
-RUN apt-get install -y tomcat7 tomcat7-admin apache2 libapache2-mod-jk
+RUN apt-get install -y tomcat7 tomcat7-admin apache2 libapache2-mod-jk 
 RUN apt-get purge -y openjdk-6-jre-headless icedtea-6-jre-cacao openjdk-6-jre-lib icedtea-6-jre-jamvm
 RUN apt-get install -y supervisor 
 RUN apt-get install -y wget
 RUN apt-get install -y git
+RUN apt-get install -y openssh-server
 
 # install railo
 RUN wget http://www.getrailo.org/railo/remote/download42/4.2.1.000/tomcat/linux/railo-4.2.1.000-pl2-linux-x64-installer.run
@@ -28,13 +29,29 @@ ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
 
+#Config railo
+COPY /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
+ADD server.xml /opt/railo/tomcat/conf/server.xml
+
+# Config babbles
+ADD babbles.com.conf /etc/apache2/sites-available/
+RUN a2ensite babbles.com.conf
+
+#Config apache
+  COPY /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
+  ADD apache2.conf /etc/apache2/apache2.conf
+
+
 # start service 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
+#open ssh
+RUN mkdir /var/run/sshd
+RUN echo 'root:sshpass' |chpasswd
 
 # EXPOSE <port>
-EXPOSE 80 8888
+EXPOSE 80 8888 22
 
 
 # Supervisord configuration
