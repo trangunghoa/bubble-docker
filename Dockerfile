@@ -32,55 +32,30 @@ ENV APACHE_LOG_DIR /var/log/apache2
 #Config railo
 RUN mv /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
 ADD server.xml /opt/railo/tomcat/conf/server.xml
+  RUN chmod +x /opt/railo/tomcat/conf/server.xml
 
 # Config babbles
 ADD babbles.com.conf /etc/apache2/sites-available/babbles.com.conf
+RUN chmod +x /etc/apache2/sites-available/babbles.com.conf
 RUN a2ensite babbles.com.conf
 
 #Config apache
   RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
   ADD apache2.conf /etc/apache2/apache2.conf
+  RUN chmod +x /etc/apache2/apache2.conf
 
 
 # start service 
 ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
-
-############# Install Git
-RUN apt-get install -y git
   
 # Get code 
-
+RUn mkdir /var/www/babblesphere
   RUN git clone https://manhhd6058:Abc%40123@github.com/MESSAGEBROADCAST/devii.babblesphere.com.git /var/www/babblesphere
   RUN chown -R www-data:www-data /var/www/babblesphere
   RUN chmod -R 755 /var/www/babblesphere
 #End
-
-
-#Config apache
-  ADD apache2.conf /etc/apache2/apache2.conf.tmp
-  RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
-  RUN mv /etc/apache2/apache2.conf.tmp /etc/apache2/apache2.conf
-  RUN chmod +x /etc/apache2/apache2.conf
-
-  ADD babbles.com.conf /etc/apache2/sites-available/
-  RUN chmod +x /etc/apache2/sites-available/babbles.com.conf
-
-  RUN a2ensite babbles.com.conf
-  RUN a2enmod rewrite
-  RUN sudo service apache2 start
-#End
-
-#Config railo
-  ADD server.xml /opt/railo/tomcat/conf/server.xml.tmp
-  RUN mv /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
-  RUN mv /opt/railo/tomcat/conf/server.xml.tmp /opt/railo/tomcat/conf/server.xml
-  RUN chmod +x /opt/railo/tomcat/conf/server.xml
-  RUN sudo service railo_ctl start
-#End
-
-
 
 
 #open ssh
