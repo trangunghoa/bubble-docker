@@ -34,7 +34,7 @@ RUN mv /opt/railo/tomcat/conf/server.xml /opt/railo/tomcat/conf/server.xml.bak
 ADD server.xml /opt/railo/tomcat/conf/server.xml
 
 # Config babbles
-ADD babbles.com.conf /etc/apache2/sites-available/
+ADD babbles.com.conf /etc/apache2/sites-available/babbles.com.conf
 RUN a2ensite babbles.com.conf
 
 #Config apache
@@ -47,8 +47,8 @@ ADD run.sh /run.sh
 RUN chmod +x /*.sh
 
 #open ssh
-RUN mkdir /var/run/sshd
-RUN echo 'root:sshpass' |chpasswd
+#RUN mkdir /var/run/sshd
+#RUN echo 'root:sshpass' |chpasswd
 
 # EXPOSE <port>
 EXPOSE 80 8888 22
