@@ -38,9 +38,9 @@ ADD server.xml /opt/railo/tomcat/conf/server.xml
   RUN chmod +x /opt/railo/tomcat/conf/server.xml
 
 # Config babbles
-ADD babbles.com.conf /etc/apache2/sites-available/babbles.com.conf
-RUN chmod +x /etc/apache2/sites-available/babbles.com.conf
-RUN a2ensite babbles.com.conf
+ADD babbles.com.vn.conf /etc/apache2/sites-available/babbles.com.vn.conf
+RUN chmod +x /etc/apache2/sites-available/babbles.com.vn.conf
+RUN a2ensite babbles.com.vn.conf
 
 #Config apache
   RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.bak
