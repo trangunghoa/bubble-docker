@@ -10,6 +10,9 @@ RUN apt-get install -y supervisor
 RUN apt-get install -y wget
 RUN apt-get install -y git
 RUN apt-get install -y openssh-server
+RUN apt-get install -y make g++ libsndfile1-dev libpng++-dev libpng12-dev libboost-program-options-dev
+RUN apt-get install -y sox libsox-fmt-mp3
+
 
 # install railo
 RUN wget http://www.getrailo.org/railo/remote/download42/4.2.1.000/tomcat/linux/railo-4.2.1.000-pl2-linux-x64-installer.run
@@ -57,6 +60,9 @@ RUN mkdir /var/www/babblesphere
   RUN chmod -R 755 /var/www/babblesphere
 #End
 
+#Add wave2png
+ADD wav2png /bin
+RUN chmod +x /bin/wav2png
 
 #open ssh
 #RUN mkdir /var/run/sshd
