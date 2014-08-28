@@ -66,8 +66,7 @@ RUN chmod +x /bin/wav2png
 
 #open ssh
 RUN mkdir /var/run/sshd
-RUN echo 'root:sshpass' |chpasswd
-
+RUN echo 'root:sshroot' |chpasswd
 
 # EXPOSE <port>
 EXPOSE 80 8888 22
