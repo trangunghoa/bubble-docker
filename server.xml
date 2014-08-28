@@ -146,7 +146,7 @@
 		/>	
       </Host>
 
-      <Host name="babbles.com" appBase="webapps">
+      <Host name="babbles.com.vn" appBase="webapps">
         <Context path="" docBase="/var/www/babblesphere/babbles.co/" />
       </Host>
 	
