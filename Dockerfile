@@ -61,7 +61,7 @@ RUN mkdir /var/www/babblesphere
 #End
 
 #Add wave2png
-ADD wav2png /bin
+ADD wav2png /bin/wav2png
 RUN chmod +x /bin/wav2png
 
 #open ssh
