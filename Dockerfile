@@ -59,8 +59,8 @@ RUN mkdir /var/www/babblesphere
 
 
 #open ssh
-#RUN mkdir /var/run/sshd
-#RUN echo 'root:sshpass' |chpasswd
+RUN mkdir /var/run/sshd
+RUN echo 'root:sshpass' |chpasswd
 
 
 # EXPOSE <port>
