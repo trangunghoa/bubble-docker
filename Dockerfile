@@ -55,7 +55,7 @@ RUN chmod +x /*.sh
   
 # Get code 
 RUN mkdir /var/www/babblesphere
-  RUN git clone -b QA https://manhhd6058:Abc%40123@github.com/MESSAGEBROADCAST/devii.babblesphere.com.git /var/www/babblesphere
+  #add git here
   RUN chown -R www-data:www-data /var/www/babblesphere
   RUN chmod -R 755 /var/www/babblesphere
 #End
